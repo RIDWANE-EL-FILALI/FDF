@@ -1,6 +1,5 @@
 <img src="https://github.com/RIDWANE-EL-FILALI/FDF/blob/master/img/My%20project-2.png">
 
-
 # Index :
 * [Introduction](#MinilibX)
 * [Mlx_init](#Mlx_init)
@@ -107,6 +106,31 @@ int             mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_
 ````
 #### DESCRIPTION:
 The user can draw inside the image (see below), and can dump the image inside a specified window at any time to display it on the screen. This is done using `mlx_put_image_to_window`
+
+## mlx_destroy_image()
+#### PROTOTYPE:
+````
+int             mlx_destroy_image(void *mlx_ptr, void *img_ptr);
+````
+#### DESCRIPTION:
+mlx_destroy_image destroys the given image (`img_ptr`).
+## EVENTS :
+Both X-Window and MacOSX graphical systems are bi-directionnal.
+
+On one hand, the program sends orders to the screen to display pixels, images, and so on.
+
+On the other hand, it can get information from the keyboard and mouse associated to the screen. To do so, the program receives “events” from the keyboard or the mouse.
+#### DESCRIPTION:
+To receive events, you must use `mlx_loop`. This function never returns. It is an infinite loop that waits for an event, and then calls a user-defined function associated with this event. A single parameter is needed, the connection identifier mlx_ptr
+You can assign different functions to the three following events:
+
+-   A key is pressed
+-   The mouse button is pressed
+-   A part of the window should be re-drawn (this is called an “expose” event, and it is your program’s job to handle it).
+
+Each window can define a different function for the same event.
+
+The three functions `mlx_key_hook`, `mlx_mouse_hook` and `mlx_expose_hook` work exactly the same way. `funct_ptr` is a pointer to the function you want to be called when an event occurs. This assignment is specific to the window defined by the `win_ptr` identifier. The `param` address will be passed to the function everytime it is called, and should be used to store the parameters it might need.
 
 
 
