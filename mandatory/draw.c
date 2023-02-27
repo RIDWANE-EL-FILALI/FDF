@@ -50,7 +50,6 @@ void	draw(t_dot **matrix)
 {
 	int		y;
 	int		x;
-
 	print_menu(PRM);
 	y = 0;
 	while (matrix[y])
@@ -60,7 +59,7 @@ void	draw(t_dot **matrix)
 		{
 			if (matrix[y + 1])
 				line(matrix[y][x], matrix[y + 1][x], &PRM);
-			if (!matrix[y][x].is_last)
+			if (matrix[y][x].is_last != 1)
 				line(matrix[y][x], matrix[y][x + 1], &PRM);
 			if (matrix[y][x].is_last)
 				break ;
@@ -68,5 +67,5 @@ void	draw(t_dot **matrix)
 		}
 		y++;
 	}
-	mlx_put_image_to_window(PRM.mlx_ptr, PRM.win_ptr, PRM.image_ptr ,200, 200);
+	mlx_put_image_to_window(PRM.mlx_ptr, PRM.win_ptr, PRM.image_ptr ,400, 0);
 }

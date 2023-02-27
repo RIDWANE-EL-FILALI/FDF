@@ -11,7 +11,7 @@ static int	ft_countword(char *str, char c)
 	{
 		while (str[i] != '\0' && (str[i] == c))
 			i++;
-		if (str[i] != '\0')
+		if (str[i] != '\0' && str[i] != '\n')
 			count++;
 		while (str[i] != '\0' && !(str[i] == c))
 			i++;

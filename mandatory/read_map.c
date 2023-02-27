@@ -7,11 +7,11 @@ int	get_width(char *str, char c)
 
 	count = 0;
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i] != '\0' && str[i] != '\n')
 	{
 		while (str[i] != '\0' && (str[i] == c))
 			i++;
-		if (str[i] != '\0')
+		if (str[i] != '\0' && str[i] != '\n')
 			count++;
 		while (str[i] != '\0' && !(str[i] == c))
 			i++;
@@ -23,10 +23,12 @@ int		get_dots_from_line(char *line, t_dot **matrix_of_dots, int y)
 {
 	char	**dots;
 	int		x;
+	int width;
 
+	width = get_width(line, ' ');
 	dots = ft_split(line, ' ');
 	x = 0;
-	while (dots[x])
+	while (x < width)
 	{
 		matrix_of_dots[y][x].z = ft_atoi(dots[x]);
 		matrix_of_dots[y][x].x = x;
@@ -48,7 +50,7 @@ t_dot	**memory_allocete(char *file_name)
 	int		fd;
 	char	*line;
 
-	if ((fd = open(file_name, O_RDONLY)) <= 0)
+	if ((fd = open(file_name, O_RDONLY)) < 2)
 		ft_error("file does not exist");
 	line = get_next_line(fd);
 	x = get_width(line, ' ');
@@ -62,7 +64,7 @@ t_dot	**memory_allocete(char *file_name)
 	free(line);
 	new = (t_dot **)malloc(sizeof(t_dot *) * (++y));
 	while (y > 0)
-		new[--y] = (t_dot *)malloc(sizeof(t_dot) * (x + 1));
+		new[--y] = (t_dot *)malloc(sizeof(t_dot) * (x));
 	close(fd);
 	return (new);
 }
@@ -75,7 +77,7 @@ t_dot	**read_map(char *file_name)
 	char	*line;
 
 	matrix_of_dots = memory_allocete(file_name);
-	fd = open(file_name, O_RDONLY, 0);
+	fd = open(file_name, O_RDONLY);
 	y = 0;
 	line = get_next_line(fd);
 	while (line)
@@ -84,7 +86,7 @@ t_dot	**read_map(char *file_name)
 		line = get_next_line(fd);
 	}
 	free(line);
-	matrix_of_dots[y] = NULL;
+	matrix_of_dots[y] = 0;
 	close(fd);
 	return (matrix_of_dots);
 }
