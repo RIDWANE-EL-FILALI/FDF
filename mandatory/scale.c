@@ -1,6 +1,12 @@
 #include "fdf.h"
 
-void	zoom(t_dot *a, t_dot *b, t_dot *param)
+void	isometric(t_dot *dot, double angle)
+{
+	dot->x = (dot->x - dot->y) * cos(angle);
+	dot->y = (dot->x + dot->y) * sin(angle) - dot->z;
+}
+
+void	scale_things(t_dot *a, t_dot *b, t_dot *param)
 {
 	a->x *= param->scale;
 	a->y *= param->scale;
@@ -12,7 +18,7 @@ void	zoom(t_dot *a, t_dot *b, t_dot *param)
 
 void	set_param(t_dot *a, t_dot *b, t_dot *param)
 {
-	zoom(a, b, param);
+	scale_things(a, b, param);
 	if (param->is_isometric)
 	{
 		isometric(a, param->angle);

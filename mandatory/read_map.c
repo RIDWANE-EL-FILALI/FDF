@@ -19,7 +19,7 @@ int	get_width(char *str, char c)
 	return (count);
 }
 
-int		get_dots_from_line(char *line, t_dot **matrix_of_dots, int y)
+int		fill_matrix(char *line, t_dot **matrix_of_dots, int y)
 {
 	char	**dots;
 	int		x;
@@ -42,7 +42,7 @@ int		get_dots_from_line(char *line, t_dot **matrix_of_dots, int y)
 	return (x);
 }
 
-t_dot	**memory_allocete(char *file_name)
+t_dot	**alloc_mem(char *file_name)
 {
 	t_dot	**new;
 	int		x;
@@ -51,7 +51,7 @@ t_dot	**memory_allocete(char *file_name)
 	char	*line;
 
 	if ((fd = open(file_name, O_RDONLY)) < 2)
-		ft_error("file does not exist");
+		msg_error("file does not exist");
 	line = get_next_line(fd);
 	x = get_width(line, ' ');
 	y = 0;
@@ -76,13 +76,13 @@ t_dot	**read_map(char *file_name)
 	int		fd;
 	char	*line;
 
-	matrix_of_dots = memory_allocete(file_name);
+	matrix_of_dots = alloc_mem(file_name);
 	fd = open(file_name, O_RDONLY);
 	y = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
-		get_dots_from_line(line, matrix_of_dots, y++);
+		fill_matrix(line, matrix_of_dots, y++);
 		line = get_next_line(fd);
 	}
 	free(line);

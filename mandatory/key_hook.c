@@ -13,16 +13,17 @@ void clear(t_dot **matrix)
 {
 	mlx_destroy_image(PRM.mlx_ptr, PRM.image_ptr);
 	mlx_clear_window(PRM.mlx_ptr, PRM.win_ptr);
-	PRM.image_ptr = mlx_new_image(PRM.mlx_ptr, PRM.win_x, PRM.win_y);
+	PRM.image_ptr = mlx_new_image(PRM.mlx_ptr, 2000, 2000);
 	PRM.adrr = mlx_get_data_addr(PRM.image_ptr, &PRM.pixel_per_bit, &PRM.line_size, &PRM.endian);
 }
+
 
 void	do_key(int key, t_dot **matrix)
 {
 	if (key == 24 || key == 69)
-		PRM.scale += 1;
+		PRM.scale += 3;
 	if (key == 27 || key == 78)
-		PRM.scale -= 1;
+		PRM.scale -= 3;
 	if (key == 91 || key == 28)
 		PRM.z_scale += 1;
 	if (key == 84 || key == 19)
@@ -50,13 +51,10 @@ int		deal_key(int key, t_dot **matrix)
 	{
 		do_key(key, matrix);
 		clear(matrix);
-		print_menu(PRM);
-		draw(matrix);
+		draw_map(matrix);
 	}
 	if (key == 53)
 	{
-		mlx_destroy_image(PRM.mlx_ptr, PRM.image_ptr);
-		mlx_clear_window(PRM.mlx_ptr, PRM.win_ptr);
 		mlx_destroy_window(PRM.mlx_ptr, PRM.win_ptr);
 		free(matrix);
 		exit(0);

@@ -13,12 +13,15 @@ float MAX(float x, float y)
 }
 
 
-void	my_mlx_put_pixel(t_dot *data, int x, int y, int color)
+void	my_mlx_put_pixel(t_dot *data, int x, int y, int  color)
 {
 	char	*dst;
 
-	dst = data->adrr + (y * data->line_size + x * (data->pixel_per_bit / 8));
-	*(unsigned int *)dst = color;
+	if ((x > 0 && x < 2000) && (y > 0 && y < 2000))
+	{
+		dst = data->adrr + (y * data->line_size + x * (data->pixel_per_bit / 8));
+		*(unsigned int *)dst = color;
+	}
 }
 
 void	line(t_dot a, t_dot b, t_dot *param)
@@ -46,7 +49,8 @@ void	line(t_dot a, t_dot b, t_dot *param)
 	}
 }
 
-void	draw(t_dot **matrix)
+
+void	draw_map(t_dot **matrix)
 {
 	int		y;
 	int		x;

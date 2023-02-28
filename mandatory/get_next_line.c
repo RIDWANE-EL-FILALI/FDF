@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "fdf.h"
 
 char *ft_read(int fd, char *str)
 {
@@ -36,22 +36,3 @@ char *get_next_line(int fd)
     str = ft_next_str(str);
     return (line);
 }
-
-/*int	main(void)
-{
-	int fd;
-    char *tab;
-
-    fd = open("test.txt", O_RDONLY);
-    tab = get_next_line(fd);
-    printf("%s", tab);
-    free(tab);
-    tab = get_next_line(fd);
-    printf("%s", tab);
-    tab = get_next_line(fd);
-    printf("%s", tab);
-    tab = get_next_line(fd);
-    printf("%s", tab);
-    close(fd);
-	return (0);
-}*/

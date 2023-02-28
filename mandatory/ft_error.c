@@ -1,7 +1,7 @@
 #include "fdf.h"
 
-void	ft_error(char *msg)
+void	msg_error(char *err)
 {
-	printf("%s\n", msg);
+	perror(err);
 	exit(1);
 }

@@ -27,21 +27,21 @@ int check(char *str)
 void	set_default(t_dot *param, char **av)
 {
 	if (check(av[1]) == 2)
-		param->scale = 1;
-	else if (check(av[1]) == 1)
 		param->scale = 10;
+	else if (check(av[1]) == 1)
+		param->scale = 20;
 	else
 		param->scale = 40;
 	param->z_scale = 1;
 	param->is_isometric = 1;
 	param->angle = 0.523599;
-	param->win_x = 2850;
-	param->win_y = 1400;
-	param->shift_x = param->win_x / 4;
-	param->shift_y = param->win_y / 4;
+	param->win_x = 2000;
+	param->win_y = 1000;
+	param->shift_x = param->win_x / 3;
+	param->shift_y = param->win_y / 3;
 	param->mlx_ptr = mlx_init();
 	param->win_ptr = mlx_new_window(param->mlx_ptr, param->win_x, param->win_y, "FDF");
-	param->image_ptr = mlx_new_image(param->mlx_ptr, param->win_x, param->win_y);
+	param->image_ptr = mlx_new_image(param->mlx_ptr, 2000, 2000);
 	param->adrr = mlx_get_data_addr(param->image_ptr, &param->pixel_per_bit, &param->line_size, &param->endian);
 }
 
@@ -53,11 +53,11 @@ int		main(int ac, char **av)
 	{
 		matrix = read_map(av[1]);
 		set_default(&PRM, av);
-		draw(matrix);
+		draw_map(matrix);
 		mlx_key_hook(PRM.win_ptr, deal_key, matrix);
 		mlx_loop(PRM.mlx_ptr);
 	}
 	else
-		ft_error("usage: ./fdf map.fdf");
+		msg_error("usage: ./fdf map.fdf");
 	return(0);
 }
