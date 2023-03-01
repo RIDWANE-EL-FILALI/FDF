@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rel-fila <rel-fila@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/01 12:03:25 by rel-fila          #+#    #+#             */
+/*   Updated: 2023/03/01 12:03:27 by rel-fila         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 int	get_width(char *str, char c)
@@ -19,11 +31,11 @@ int	get_width(char *str, char c)
 	return (count);
 }
 
-int		fill_matrix(char *line, t_dot **matrix_of_dots, int y)
+int	fill_matrix(char *line, t_dot **matrix_of_dots, int y)
 {
 	char	**dots;
 	int		x;
-	int width;
+	int		width;
 
 	width = get_width(line, ' ');
 	dots = ft_split(line, ' ');
@@ -50,7 +62,8 @@ t_dot	**alloc_mem(char *file_name)
 	int		fd;
 	char	*line;
 
-	if ((fd = open(file_name, O_RDONLY)) < 2)
+	fd = open(file_name, O_RDONLY);
+	if (fd <= 2)
 		msg_error("file does not exist");
 	line = get_next_line(fd);
 	x = get_width(line, ' ');
@@ -87,6 +100,6 @@ t_dot	**read_map(char *file_name)
 	}
 	free(line);
 	matrix_of_dots[y] = 0;
-	close(fd);
+	close (fd);
 	return (matrix_of_dots);
 }
