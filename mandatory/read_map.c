@@ -67,15 +67,16 @@ t_dot	**alloc_mem(char *file_name)
 		msg_error("file does not exist");
 	line = get_next_line(fd);
 	x = get_width(line, ' ');
-	y = 0;
+	y = 1;
 	while (line)
 	{
-		y++;
+		if (ft_isprint(*line))
+			y++;
 		free(line);
 		line = get_next_line(fd);
 	}
 	free(line);
-	new = (t_dot **)malloc(sizeof(t_dot *) * (++y));
+	new = (t_dot **)malloc(sizeof(t_dot *) * (y--));
 	while (y > 0)
 		new[--y] = (t_dot *)malloc(sizeof(t_dot) * (x));
 	close(fd);

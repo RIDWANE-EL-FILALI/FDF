@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <mlx.h>
+# include <ctype.h>
 # define BUFFER_SIZE	1000
 
 typedef struct s_dot
@@ -80,5 +81,6 @@ void	check_iso(t_dot **matrix);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_isprint(int c);
 
 #endif

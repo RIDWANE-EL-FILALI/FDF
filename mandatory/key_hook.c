@@ -67,6 +67,8 @@ int	deal_key(int key, t_dot **matrix)
 	}
 	if (key == 53)
 	{
+		mlx_destroy_image(matrix[0][0].mlx_ptr, matrix[0][0].image_ptr);
+		mlx_clear_window(matrix[0][0].mlx_ptr, matrix[0][0].win_ptr);
 		mlx_destroy_window(matrix[0][0].mlx_ptr, matrix[0][0].win_ptr);
 		free(matrix);
 		exit(0);

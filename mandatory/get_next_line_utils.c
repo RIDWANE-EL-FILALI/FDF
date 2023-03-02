@@ -89,11 +89,6 @@ char	*ft_line(char *str)
 		tab[i] = str[i];
 		i++;
 	}
-	if (str[i] == '\n')
-	{
-		tab[i] = str[i];
-		i++;
-	}
 	tab[i] = '\0';
 	return (tab);
 }
