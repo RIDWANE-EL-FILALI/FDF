@@ -20,7 +20,7 @@
 # include <math.h>
 # include <mlx.h>
 # include <ctype.h>
-# define BUFFER_SIZE	1000
+# define BUFFER_SIZE	4000
 
 typedef struct s_dot
 {
