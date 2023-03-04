@@ -1,5 +1,4 @@
 NAME = fdf.a
-CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 FRAMEWORK = -lmlx -framework appkit -framework openGl
 RM = rm -f
